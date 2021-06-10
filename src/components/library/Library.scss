@@ -7,6 +7,9 @@
 	box-shadow: 2px 2px 50px #9ca3af;
 	overflow: scroll;
 	background-color: #e5e7eb;
+	transform: translateX(-100%);
+	transition: all 400ms ease;
+	opacity: 0;
 
 	display: flex;
 	flex-direction: column;
@@ -46,4 +49,9 @@
 
 .selected {
 	background-color: #93c5fd;
+}
+
+.active-library {
+	transform: translateX(0);
+	opacity: 1;
 }

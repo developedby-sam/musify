@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import FeatherIcon from "feather-icons-react";
 import "./Player.scss";
 
@@ -37,7 +37,7 @@ const Player = ({
 				<p>{getTime(songInfo.currentTime)}</p>
 				<input
 					min={0}
-					max={songInfo.duration}
+					max={songInfo.duration || 0}
 					value={songInfo.currentTime}
 					onChange={handleInputDrag}
 					type="range"
