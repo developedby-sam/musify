@@ -1,10 +1,15 @@
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import FeatherIcon from "feather-icons-react";
 import "./Player.scss";
 
-const Player = ({ currentSong, isPlaying, setIsPlaying }) => {
-	// Ref
-	const audioRef = useRef(null);
+const Player = ({
+	songInfo,
+	setSongInfo,
+	currentSong,
+	isPlaying,
+	setIsPlaying,
+	audioRef,
+}) => {
 	// Event Handlers
 	const handlePlaySong = () => {
 		if (!isPlaying) {
@@ -14,12 +19,6 @@ const Player = ({ currentSong, isPlaying, setIsPlaying }) => {
 			audioRef.current.pause();
 			setIsPlaying(!isPlaying);
 		}
-	};
-
-	const handleTimeUpdate = (e) => {
-		const current = e.target.currentTime;
-		const duration = e.target.duration;
-		setSongInfo({ ...songInfo, currentTime: current, duration });
 	};
 
 	const handleInputDrag = (e) => {
@@ -32,12 +31,6 @@ const Player = ({ currentSong, isPlaying, setIsPlaying }) => {
 			Math.floor(time / 60) + ":" + ("0" + Math.floor(time % 60)).slice(-2)
 		);
 	};
-
-	// state
-	const [songInfo, setSongInfo] = useState({
-		currentTime: 0,
-		duration: 0,
-	});
 	return (
 		<div className="player">
 			<div className="time-control">
@@ -61,12 +54,6 @@ const Player = ({ currentSong, isPlaying, setIsPlaying }) => {
 				/>
 				<FeatherIcon icon="skip-forward" size={24} color="gray" />
 			</div>
-			<audio
-				onTimeUpdate={handleTimeUpdate}
-				onLoadedMetadata={handleTimeUpdate}
-				ref={audioRef}
-				src={currentSong.audio}
-			></audio>
 		</div>
 	);
 };
