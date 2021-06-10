@@ -1,23 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import "./styles/style.scss";
+
+// importing components
+import Player from "./components/player/Player.js";
+import Song from "./components/song/Song.js";
+
+// importing data
+import data from "./data.js";
 
 function App() {
+  // State
+  const [songs, setSongs] = useState(data());
+  const [currentSong, setCurrentSong] = useState(songs[0]);
+  const [isPlaying, setIsPlaying] = useState(false);
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Song currentSong={currentSong} />
+      <Player
+        isPlaying={isPlaying}
+        setIsPlaying={setIsPlaying}
+        currentSong={currentSong}
+      />
     </div>
   );
 }
