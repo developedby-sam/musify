@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import FeatherIcon from "feather-icons-react";
+import { PlayAudio } from "../../util.js";
 import "./Player.scss";
 
 const Player = ({
@@ -27,7 +28,7 @@ const Player = ({
 			[currentSong]
 		);
 		setSongs(newSongs);
-	});
+	}, [songInfo]);
 	// Event Handlers
 	const handlePlaySong = () => {
 		if (!isPlaying) {
@@ -52,10 +53,12 @@ const Player = ({
 		if (direction === "skip-back") {
 			if ((currentIndex - 1) % songs.length === -1) {
 				setCurrentSong(songs[songs.length - 1]);
+				PlayAudio(isPlaying, audioRef);
 				return;
 			}
 			setCurrentSong(songs[(currentIndex - 1) % songs.length]);
 		}
+		PlayAudio(isPlaying, audioRef);
 	};
 
 	const getTime = (time) => {
@@ -63,18 +66,30 @@ const Player = ({
 			Math.floor(time / 60) + ":" + ("0" + Math.floor(time % 60)).slice(-2)
 		);
 	};
+
+	const trackAnimation = {
+		transform: `translateX(${songInfo.animationPercentage}%)`,
+	};
 	return (
 		<div className="player">
 			<div className="time-control">
 				<p>{getTime(songInfo.currentTime)}</p>
-				<input
-					min={0}
-					max={songInfo.duration || 0}
-					value={songInfo.currentTime}
-					onChange={handleInputDrag}
-					type="range"
-				/>
-				<p>{getTime(songInfo.duration)}</p>
+				<div
+					style={{
+						background: `linear-gradient(to right, ${currentSong.color[0]}, ${currentSong.color[1]})`,
+					}}
+					className="track"
+				>
+					<input
+						min={0}
+						max={songInfo.duration || 0}
+						value={songInfo.currentTime}
+						onChange={handleInputDrag}
+						type="range"
+					/>
+					<div style={trackAnimation} className="animate-track"></div>
+				</div>
+				<p>{songInfo.duration ? getTime(songInfo.duration) : "0:00"}</p>
 			</div>
 			<div className="play-control">
 				<FeatherIcon
@@ -86,14 +101,14 @@ const Player = ({
 				<FeatherIcon
 					icon={isPlaying ? "pause" : "play"}
 					size={24}
-					color="gray"
+					color="#6B7280"
 					onClick={handlePlaySong}
 				/>
 				<FeatherIcon
 					onClick={() => handleSkipTrack("skip-forward")}
 					icon="skip-forward"
 					size={24}
-					color="gray"
+					color="#6B7280"
 				/>
 			</div>
 		</div>
