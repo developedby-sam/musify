@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import FeatherIcon from "feather-icons-react";
 import "./Player.scss";
 
@@ -13,12 +13,10 @@ const Player = ({
 	setIsPlaying,
 	audioRef,
 }) => {
-	// useEffect
-	useEffect(() => {
-		// Add active state
+	const handleActiveLibrary = (nextPrev) => {
 		const newSongs = songs.map(
 			(song) => {
-				if (song.id === currentSong.id) {
+				if (song.id === nextPrev.id) {
 					return { ...song, active: true };
 				} else {
 					return { ...song, active: false };
@@ -27,7 +25,7 @@ const Player = ({
 			[currentSong]
 		);
 		setSongs(newSongs);
-	}, [songInfo]);
+	};
 	// Event Handlers
 	const handlePlaySong = () => {
 		if (!isPlaying) {
@@ -48,14 +46,17 @@ const Player = ({
 		let currentIndex = songs.findIndex((song) => song.id === currentSong.id);
 		if (direction === "skip-forward") {
 			await setCurrentSong(songs[(currentIndex + 1) % songs.length]);
+			handleActiveLibrary(songs[(currentIndex + 1) % songs.length]);
 		}
 		if (direction === "skip-back") {
 			if ((currentIndex - 1) % songs.length === -1) {
 				await setCurrentSong(songs[songs.length - 1]);
+				handleActiveLibrary(songs[songs.length - 1]);
 				if (isPlaying) audioRef.current.play();
 				return;
 			}
 			await setCurrentSong(songs[(currentIndex - 1) % songs.length]);
+			handleActiveLibrary(songs[(currentIndex - 1) % songs.length]);
 		}
 		if (isPlaying) audioRef.current.play();
 	};
