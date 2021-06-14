@@ -1,20 +1,20 @@
 {
   "files": {
-    "main.css": "/musify/static/css/main.0862a7e7.chunk.css",
-    "main.js": "/musify/static/js/main.f16d12ec.chunk.js",
-    "main.js.map": "/musify/static/js/main.f16d12ec.chunk.js.map",
+    "main.css": "/musify/static/css/main.c33e2b4f.chunk.css",
+    "main.js": "/musify/static/js/main.b15b6763.chunk.js",
+    "main.js.map": "/musify/static/js/main.b15b6763.chunk.js.map",
     "runtime-main.js": "/musify/static/js/runtime-main.b9b33b46.js",
     "runtime-main.js.map": "/musify/static/js/runtime-main.b9b33b46.js.map",
     "static/js/2.2b1df6b8.chunk.js": "/musify/static/js/2.2b1df6b8.chunk.js",
     "static/js/2.2b1df6b8.chunk.js.map": "/musify/static/js/2.2b1df6b8.chunk.js.map",
     "index.html": "/musify/index.html",
-    "static/css/main.0862a7e7.chunk.css.map": "/musify/static/css/main.0862a7e7.chunk.css.map",
+    "static/css/main.c33e2b4f.chunk.css.map": "/musify/static/css/main.c33e2b4f.chunk.css.map",
     "static/js/2.2b1df6b8.chunk.js.LICENSE.txt": "/musify/static/js/2.2b1df6b8.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.b9b33b46.js",
     "static/js/2.2b1df6b8.chunk.js",
-    "static/css/main.0862a7e7.chunk.css",
-    "static/js/main.f16d12ec.chunk.js"
+    "static/css/main.c33e2b4f.chunk.css",
+    "static/js/main.b15b6763.chunk.js"
   ]
 }
