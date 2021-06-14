@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import FeatherIcon from "feather-icons-react";
-import { PlayAudio } from "../../util.js";
 import "./Player.scss";
 
 const Player = ({
@@ -45,20 +44,20 @@ const Player = ({
 		setSongInfo({ ...songInfo, currentTime: e.target.value });
 	};
 
-	const handleSkipTrack = (direction) => {
+	const handleSkipTrack = async (direction) => {
 		let currentIndex = songs.findIndex((song) => song.id === currentSong.id);
 		if (direction === "skip-forward") {
-			setCurrentSong(songs[(currentIndex + 1) % songs.length]);
+			await setCurrentSong(songs[(currentIndex + 1) % songs.length]);
 		}
 		if (direction === "skip-back") {
 			if ((currentIndex - 1) % songs.length === -1) {
-				setCurrentSong(songs[songs.length - 1]);
-				PlayAudio(isPlaying, audioRef);
+				await setCurrentSong(songs[songs.length - 1]);
+				if (isPlaying) audioRef.current.play();
 				return;
 			}
-			setCurrentSong(songs[(currentIndex - 1) % songs.length]);
+			await setCurrentSong(songs[(currentIndex - 1) % songs.length]);
 		}
-		PlayAudio(isPlaying, audioRef);
+		if (isPlaying) audioRef.current.play();
 	};
 
 	const getTime = (time) => {
