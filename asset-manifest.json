@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/musify/static/css/main.0862a7e7.chunk.css",
-    "main.js": "/musify/static/js/main.4c84bd9d.chunk.js",
-    "main.js.map": "/musify/static/js/main.4c84bd9d.chunk.js.map",
+    "main.js": "/musify/static/js/main.f16d12ec.chunk.js",
+    "main.js.map": "/musify/static/js/main.f16d12ec.chunk.js.map",
     "runtime-main.js": "/musify/static/js/runtime-main.b9b33b46.js",
     "runtime-main.js.map": "/musify/static/js/runtime-main.b9b33b46.js.map",
     "static/js/2.2b1df6b8.chunk.js": "/musify/static/js/2.2b1df6b8.chunk.js",
@@ -15,6 +15,6 @@
     "static/js/runtime-main.b9b33b46.js",
     "static/js/2.2b1df6b8.chunk.js",
     "static/css/main.0862a7e7.chunk.css",
-    "static/js/main.4c84bd9d.chunk.js"
+    "static/js/main.f16d12ec.chunk.js"
   ]
 }
